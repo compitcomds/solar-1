@@ -1,0 +1,21 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+
+
+<div class="centered-div">
+    <h1>Add a new product:</h1>
+    <hr>
+
+<form method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {% for field_name, field in form._fields.items() %}
+        <label for="{{ field.id }}">{{ field.label() }}</label>
+        {{ field() }}
+        <hr>
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+
+{% endblock content %}

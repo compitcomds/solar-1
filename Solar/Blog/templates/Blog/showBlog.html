@@ -1,0 +1,34 @@
+{% extends 'base_blog.html' %}
+{% block blogContent %}
+   
+
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for element in data %}
+      <tr>
+        <td>{{ element['_id'] }}</td>
+        <td>{{ element['heading'] }}</td>
+        <td>
+          <button class="common-button" onclick="window.location.href='{{ url_for('Blog.update_blog', blog_id=element['_id']) }}'">
+            Change
+        </button>
+        
+        <button class="common-button" onclick="window.location.href='{{ url_for('Blog.DeleteBolg', blogid=element['_id']) }}'">
+            Delete
+        </button>
+        
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+    
+{% endblock %}

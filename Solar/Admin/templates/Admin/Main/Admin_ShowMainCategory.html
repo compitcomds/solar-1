@@ -1,0 +1,50 @@
+{% extends "Admin_base.html" %} {% block content %}
+
+<button class="common-button" onclick="window.location.href='{{url_for('Admin.add_main_category')}}'">
+  Add main categories
+</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Subcategory</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  {% for element in data %}
+  <tbody>
+    <!-- Example row, replace with dynamic data -->
+    <tr>
+      <td>{{element._id}}</td>
+      <td>{{element.name}}</td>
+      <td>{{element.SubCategory}}</td>
+      <td>
+        <button
+          class="common-button"
+          onclick="window.location.href='{{ url_for('Admin.ShowSubCategory', subcat=element['_id']) }}'"
+        >
+          Show Subcategory
+        </button>
+
+        <button class="common-button" onclick="window.location.href='#'">
+          Edit
+        </button>
+
+        <button
+          class="common-button"
+          onclick="window.location.href='{{url_for('Admin.delete_main_category',id=element['_id'])}}'"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+    <!-- End of example row -->
+  </tbody>
+
+  <br />
+  {% endfor %}
+</table>
+
+{% endblock content %}

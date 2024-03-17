@@ -1,0 +1,15 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+this is index
+{#
+{% for element in data %}
+        {{ element.name }}
+        <!-- {{ element['_id'] }} -->
+        <a href="{{url_for('Admin.Admin_view_product',value=element['_id'])}}">view</a>
+        <a href="{{ url_for('Admin.Admin_delete_category', id=element['_id']) }}">delete</a>
+
+
+        <br>
+{% endfor %}
+#}
+{% endblock content %}

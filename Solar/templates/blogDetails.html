@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="ss_blog spacer_bottom spacer_top"> <!--===== Section One Start =====-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="ss_blog_left">
+					<div class="ss_blog_img">
+						<!-- <img class="img-fluid" src="https://via.placeholder.com/1103x550" alt="Image"> -->
+						<img class="img-fluid" src="{{'https://'+data[0]['image_link']}}" alt="Image">
+
+					</div>	
+					<div class="ss_user">
+						<h2>{{data[0]['heading']}}</h2>
+					</div>
+					<hr>
+					<p>{{data[0]['para1']}}</p><br>
+					<p>{{data[0]['para2']}}</p><br>
+					<p>{{data[0]['para3']}}</p><br>
+					<p>{{data[0]['para4']}}</p><br>
+					<p>{{data[0]['para5']}}</p><br>
+
+				</div>
+				
+			</div>
+			<div class="col-lg-4">
+				<div class="ss_blog_sidebar">
+					<div class="post_widget widget">
+						<h2>Related Posts</h2>
+						{% for i in related_data %}
+						<div class="ss_blog_box">
+							<div class="post_wid_img">
+								<a href="{{url_for('blogDetails',blog_id=i['_id'])}}"><img class="img-fluid" src="{{'https://'+ i['image_link'] }}" alt="image"/></a>
+							</div>
+							<div class="post_wid_text">
+								<a href="{{url_for('blogDetails',blog_id=i['_id'])}}">{{i.heading}}</a>
+								<a href="{{url_for('blogDetails',blog_id=i['_id'])}}"><span>{{i.date}}</span></a>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

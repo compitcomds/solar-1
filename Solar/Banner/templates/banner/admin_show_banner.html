@@ -1,0 +1,36 @@
+{% extends 'Admin_base.html' %} {% block content %}
+
+<button class="common-button" onclick="window.location.href='{{url_for('Banner.addBanner')}}'">
+  Add banner
+</button>
+
+        
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Subcategory</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for element in data %}
+    <tr>
+      <td>{{ element._id }}</td>
+      <td>{{ element.title }}</td>
+      <td>
+        <img src="{{ 'https://'+ element.image_link}}" alt=""  class="common-image"/>
+      </td>
+      <td>
+        <button class="common-button" onclick="window.location.href='{{ url_for('Banner.deleteBanner', banner_id=element['_id']) }}'">
+          Delete
+      </button>
+      
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

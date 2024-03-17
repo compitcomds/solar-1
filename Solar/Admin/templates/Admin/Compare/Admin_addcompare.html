@@ -1,0 +1,89 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+<style>
+    /* Custom styling for the form */
+    #app {
+        margin-top: 20px;
+        padding: 0 20px ;
+    }
+
+    .item-id{
+        margin: 20px 0 ;
+    }
+
+    .item {
+      
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        gap : 10px
+    }
+    .item-name{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        min-width: 300px;
+        gap:10px;
+       
+    }
+
+    .edit-mode input[type="text"] {
+        width: 200px;
+        margin-right: 10px;
+    }
+
+    .actions button {
+        margin-right: 10px;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 10px;
+    }
+
+    button {
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .back-button {
+        margin-top: 20px;
+    }
+</style>
+
+<div id="app" data-sub-id="{{ sub_id }}" data-get_data="{{ data['compare'] }}" data-get-main-id="{{ m }}">
+    <span class="item-id">
+    </span>
+    
+    {%raw%}
+    <div v-for="(item, index) in property" :key="index" class="item ">
+        <div v-if="!item.editMode" class="item-name">
+           <span class="item-name-Main">
+               Lable Name: <strong>{{ item.name }}</strong>
+           </span> 
+            <button class="edit-button" @click="toggleEditMode(item)">Edit</button>
+        </div>
+        <div v-else class="edit-mode">
+            <input type="text" v-model="item.name" placeholder="Enter text">
+            <button class="save-button" @click="saveChanges(item)">Save</button>
+        </div>
+        <button class="delete-button" @click="removeItem(index)">Delete</button>
+    </div>
+    <button class="add-button" @click="addItem">Add</button>
+    <hr>
+    <button class="save-all-button" @click="save" :disabled="property.length === 0">Save</button>
+    <div class="error-message">{{ errorMessage }}</div>
+   
+    <button class="back-button" @click="goBack">Back</button>
+    {%endraw%}
+</div>
+
+<script src="https://unpkg.com/vue@3"></script>
+<script src="{{ url_for('Admin.static', filename='app.js') }}"></script>
+
+{% endblock content %}

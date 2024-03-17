@@ -1,0 +1,60 @@
+{% extends "Admin_base.html" %} {% block content %}
+
+<button class="common-button" onclick="window.location.href='{{url_for('Admin.add_sub_category',subcat=subcat)}}'">
+  add sub categories categories
+</button>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Product</th>
+      <th>Compare</th>
+      <th>Parameter</th>
+    </tr>
+  </thead>
+  {% for element in data %}
+  <tbody>
+    <!-- Example row, replace with dynamic data -->
+    <tr>
+      <td>{{element._id}}</td>
+      <td>{{element.name}}</td>
+      <td>{{element.Product}}</td>
+      <td>
+        {% for a in element.compare %}
+        <li>
+          {{a.name}}
+        </li>
+        {% endfor %}
+
+      </td>
+     
+      <td>
+        <button class="common-button" onclick="window.location.href='{{ url_for('Admin.ShowProduct', main_id=element['_id'], sub_id=subcat) }}'">
+          View Product
+      </button>
+      
+      <button class="common-button" onclick="window.location.href='{{ url_for('Admin.Compare_Templates', sub_id=element['_id']) }}'">
+          Compare Parameter
+      </button>
+      
+      <button class="common-button" onclick="window.location.href='#'">
+          Edit
+      </button>
+      
+      <button class="common-button" onclick="window.location.href='{{ url_for('Admin.delete_sub_category', id=element['_id'], subcat=subcat) }}'">
+          Delete
+      </button>
+      
+      </td>
+    </tr>
+    <!-- End of example row -->
+  </tbody>
+
+  <br />
+  {% endfor %}
+</table>
+<br />
+ {% endblock content %}

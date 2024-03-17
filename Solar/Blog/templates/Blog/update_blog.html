@@ -1,0 +1,15 @@
+{% extends 'base_blog.html' %}
+{% block blogContent %}
+    <h1>Update Blog</h1>
+    <form method="POST" >
+        {{ form.hidden_tag() }}
+        {{ form.heading.label }} {{ form.heading(size=50) }}<br>
+        {{ form.para1.label }} {{ form.para1(rows=5, cols=50) }}<br>
+        {{ form.para2.label }} {{ form.para2(rows=5, cols=50) }}<br>
+        {{ form.para3.label }} {{ form.para3(rows=5, cols=50) }}<br>
+        {{ form.para4.label }} {{ form.para4(rows=5, cols=50) }}<br>
+        {{ form.para5.label }} {{ form.para5(rows=5, cols=50) }}<br>
+        {{ form.submit() }}
+    </form>
+{% endblock %}
+

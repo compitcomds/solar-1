@@ -1,0 +1,443 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Page</title>
+    <style>
+        th:first-child,
+        td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <section>
+        <div class="container mt-5">
+            <h1 class="text-center mb-5">Compare your products</h1>
+            <div class="table-responsive table-container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 200px;" class="text-center align-middle border">
+                                <h3 class="ss_h3_center text-center">Comparison Parameter</h3>
+                            </th>
+                            <th scope="col" class="text-center align-middle border">
+                                <img src="{{'https://'+ data['photos1'] }}" style="width: 200px;"
+                                    class="img-fluid rounded hover-shadow" alt="Los Angeles Skyscrapers" />
+                            </th>
+                            <th scope="col" class="text-center align-middle border">
+
+                                <button type="button" class="btn " data-toggle="modal"
+                                    data-target="#exampleModalLongpro1">
+                                    {% if data1 %}
+
+                                     
+                                    <button style="background: transparent;border: none;">
+                                        <!-- Button Content -->
+                                    </button>
+                                        <div style="position: relative; display: inline-block;">
+                                            <img src="{{ 'https://' + data1[0]['photos1'] }}" style="width: 200px;" class="img-fluid rounded hover-shadow" alt="Los Angeles Skyscrapers" />
+                                            <button onclick="clearQueryParam('pro1'); return false;" 
+                                            class="rounded-circle position-absolute btn btn-danger" 
+                                            style="top: 10px; right: 10px; z-index: 0;">
+                                                <span style="font-size: 1.2em;">&times;</span>
+                                            </button>
+                                        </div>
+                                        
+                                        
+
+                                    {%else%}
+
+                                    <a type="button" class="btn rounded-circle btn-lg"
+                                        style="background-color: #fc6c54; color:#ffffff" data-mdb-ripple-init>
+                                        <i class="fas fa-plus fa-2x"></i>
+                                    </a>
+                                    {% endif %}
+
+
+                                </button>
+
+                                <div class="modal fade" id="exampleModalLongpro1" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Products List</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="list-group">
+                                                    {% for item in a.data %}
+                                                    <a href="#"
+                                                    class="list-group-item list-group-item-action"
+                                                        onclick="addQueryParam('pro1', '{{ item.id }}'); return false;">{{
+                                                        item.name }}</a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </th>
+                            <th scope="col" class="text-center align-middle border">
+                                <button type="button" class="btn " data-toggle="modal"
+                                    data-target="#exampleModalLongpro2">
+                                    {% if data2 %}
+                                    <button style="background: transparent;border: none;">
+                                        <!-- Button Content -->
+                                    </button>
+                                        <div style="position: relative; display: inline-block;">
+                                            <img src="{{ 'https://' + data2[0]['photos1'] }}" style="width: 200px;" class="img-fluid rounded hover-shadow" alt="Los Angeles Skyscrapers" />
+                                            <button onclick="clearQueryParam('pro2'); return false;" 
+                                            class="rounded-circle position-absolute btn btn-danger" 
+                                            style="top: 10px; right: 10px; z-index: 0;">
+                                                <span style="font-size: 1.2em;">&times;</span>
+                                            </button>
+                                        </div>
+                                    {%else%}
+                                    <a type="button" class="btn rounded-circle btn-lg"
+                                        style="background-color: #fc6c54; color:#ffffff" data-mdb-ripple-init>
+                                        <i class="fas fa-plus fa-2x"></i>
+                                    </a>
+                                    {% endif %}
+
+
+                                </button>
+                                <div class="modal fade" id="exampleModalLongpro2" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="list-group">
+                                                    {% for item in a.data %}
+                                                     <a href="#" class="list-group-item list-group-item-action"
+                                                        onclick="addQueryParam('pro2', '{{ item.id }}'); return false;">{{
+                                                        item.name }}</a>
+
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center align-middle border">
+                                <button type="button" class="btn " data-toggle="modal"
+                                    data-target="#exampleModalLongpro3">
+                                    {% if data3 %}
+                                    <button style="background: transparent;border: none;">
+                                        <!-- Button Content -->
+                                    </button>
+                                        <div style="position: relative; display: inline-block;">
+                                            <img src="{{ 'https://' + data3[0]['photos1'] }}" style="width: 200px;" class="img-fluid rounded hover-shadow" alt="Los Angeles Skyscrapers" />
+                                            <button onclick="clearQueryParam('pro3'); return false;" 
+                                            class="rounded-circle position-absolute btn btn-danger" 
+                                            style="top: 10px; right: 10px; z-index: 0;">
+                                                <span style="font-size: 1.2em;">&times;</span>
+                                            </button>
+                                        </div>
+                                    {%else%}
+                                    <a type="button" class="btn rounded-circle btn-lg"
+                                        style="background-color: #fc6c54; color:#ffffff" data-mdb-ripple-init>
+                                        <i class="fas fa-plus fa-2x"></i>
+                                    </a>
+                                    {% endif %}
+                                </button>
+                                <div class="modal fade" id="exampleModalLongpro3" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {% for item in a.data %}
+                                                <a href="#"
+                                                class="list-group-item list-group-item-action"
+                                                    onclick="addQueryParam('pro3', '{{ item.id }}'); return false;">{{
+                                                    item.name }}</a>
+                                                {% endfor %}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>Name</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data['name']}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0]['name']}}</h6>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0]['name']}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0]['name']}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>Brand</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data['brand']}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0]['brand']}}</h6>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0]['brand']}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0]['brand']}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>productid</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data['productid']}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0]['productid']}}</h6>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0]['productid']}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0]['productid']}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>minimumOrderUnit</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data['minimumOrderUnit']}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0]['minimumOrderUnit']}}</h6>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0]['minimumOrderUnit']}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0]['minimumOrderUnit']}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>height</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data['height']}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0]['height']}}</h6>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0]['height']}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0]['height']}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>width</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data['width']}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0]['width']}}</h6>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0]['width']}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0]['width']}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>weight</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data['weight']}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0]['weight']}}</h6>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0]['weight']}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0]['weight']}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+
+                        {% for item in data.compare_parameter %}
+                        <tr>
+                            <td style="width: 200px;" class="text-center align-middle border">
+                                <h5>{{item}}</h5>
+                            </td>
+                            <td class="text-center align-middle border">
+                                <h6>{{data.compare_parameter[item]}}</h6>
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data1 %}
+                                <h6>{{data1[0].compare_parameter[item]}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data2 %}
+                                <h6>{{data2[0].compare_parameter[item]}}</h6>
+                                {% endif %}
+                            </td>
+                            <td class="text-center align-middle border">
+                                {% if data3 %}
+                                <h6>{{data3[0].compare_parameter[item]}}</h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {%endfor%}
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        // Function to append query parameters to the URL
+        function addQueryParam(paramName, paramValue) {
+            var url = window.location.href;
+            var separator = (url.indexOf('?') > -1) ? '&' : '?';
+            window.location.href = url + separator + encodeURIComponent(paramName) + '=' + encodeURIComponent(paramValue);
+        }
+
+        // Function to remove a specific query parameter from the URL
+        function clearQueryParam(paramName) {
+            var url = window.location.href;
+            var urlParts = url.split('?');
+
+            if (urlParts.length >= 2) {
+                var prefix = encodeURIComponent(paramName) + '=';
+                var params = urlParts[1].split(/[&;]/g);
+
+                // Reverse iteration to remove the specific parameter from the URL
+                for (var i = params.length; i-- > 0;) {
+                    if (params[i].lastIndexOf(prefix, 0) !== -1) {
+                        params.splice(i, 1);
+                    }
+                }
+
+                // Reconstruct the URL without the specified parameter
+                url = urlParts[0] + (params.length > 0 ? '?' + params.join('&') : '');
+            }
+
+            // Redirect to the modified URL
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+{% endblock %}

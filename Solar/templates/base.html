@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="MobileOptimized" content="320" />
+	<title>Stock Sales</title>
+	<link rel="stylesheet" href="https://stocksales.b-cdn.net/static%20content/assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://stocksales.b-cdn.net/static%20content/assets/css/fonts.css" />
+	<link rel="stylesheet" href="https://stocksales.b-cdn.net/static%20content/assets/css/fontawesome.min.css" />
+	<link rel="stylesheet" href="https://stocksales.b-cdn.net/static%20content/assets/css/magnific-popup.css" />
+	<link rel="stylesheet" href="https://stocksales.b-cdn.net/static%20content/assets/css/swiper.min.css" />
+	<link rel="stylesheet" href="https://stocksales.b-cdn.net/static%20content/assets/css/animate.css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+	<link rel="stylesheet" href="https://stocksales.b-cdn.net/static%20content/assets/css/color3.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+	<!--=== Favicon Link ===-->
+	<link rel="shortcut icon" type="image/png"
+		href="https://stocksales.b-cdn.net/static%20content/assets2/images/salesStockLogoSingle1.png ">
+	<style>
+		.ss_subMenu {
+			white-space: nowrap;
+			/* Prevent line breaks */
+		}
+
+		.ss_subMenu li {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.carousel {
+			border-radius: 1rem;
+			overflow: hidden;
+			max-height: 700px;
+		}
+	</style>
+	<style>
+		.ss_subMenu {
+			white-space: nowrap;
+			/* Prevent line breaks */
+		}
+
+		.ss_subMenu li {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.carousel {
+			border-radius: 1rem;
+			overflow: hidden;
+			max-height: 700px;
+		}
+
+		.price {
+			-webkit-appearance: none;
+			width: 100%;
+			height: 15px;
+			border-radius: 5px;
+			background: #d3d3d3;
+			outline: none;
+			opacity: 0.7;
+			-webkit-transition: .2s;
+			transition: opacity .2s;
+		}
+
+		.price:hover {
+			opacity: 1;
+		}
+
+		.price::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #fc6c54;
+			cursor: pointer;
+		}
+
+		.price::-moz-range-thumb {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #fc6c54;
+			cursor: pointer;
+		}
+	</style>
+	<style>
+		/* Disable up and down arrow keys */
+		input[type="number"]::-webkit-inner-spin-button,
+		input[type="number"]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		input[type="number"] {
+			-moz-appearance: textfield;
+		}
+	</style>
+	<style>
+		/* Hide scrollbar for IE, Edge, and Firefox */
+		.naman {
+			-ms-overflow-style: none;
+			/* IE and Edge */
+			scrollbar-width: none;
+			/* Firefox */
+			background-color: rgba(90, 135, 228, 5%);
+		}
+
+		/* Hide scrollbar for Chrome, Safari, and Opera */
+		.naman::-webkit-scrollbar {
+			display: none;
+		}
+
+		.darshan {
+			font-size: 45px;
+		}
+	</style>
+</head>
+
+<body class="index_three">
+	<section class="ss_index_one_navbar sticky-top bg-white top-0 p-3">
+		<div class="container-fluid">
+			<div class="ss_header p-0 m-0">
+				<div class="row">
+					<div class="col-lg-3 col-md-5 col-sm-4 col-4 align-self-center">
+						<div class="ss_logo">
+							<a href="{{url_for('index')}}"><img class="img-fluid"
+									src="https://stocksales.b-cdn.net/static%20content/assets2/images/salesStockLogo.png "
+									alt="logo" /></a>
+						</div>
+					</div>
+					<div class="col-lg-9 col-md-7 col-sm-8 col-8 align-self-center">
+						<div class="ss_menu">
+							<ul class="text-dark">
+								<li><a href="{{url_for('index')}}">Home</a></li>
+								<li><a href="{{url_for('about')}}">About</a></li>
+								<li class="ss_menuP">
+									Products
+									<ul class="ss_subMenu">
+										{% for element in data_categories %}
+										<li><a
+												href="{{url_for('subcategories',id=element['_id'])}}">{{element['name']}}</a>
+										</li>
+										{% endfor %}
+									</ul>
+								</li>
+								<li><a href="{{url_for('contactus')}}">Contact Us</a></li>
+							</ul>
+							<div class="head_icon">
+								<div class="ss_menu_bar">
+									<span></span>
+									<span></span>
+									<span></span>
+								</div>
+								{% if current_user.is_authenticated %}
+								{% if  is_admin %}
+								<a href="{{url_for('Admin.Admin_index')}}"
+									class="submitbtn border border-danger">DashBoard</a>
+								{% endif %}
+								<a href="{{url_for('Auth.logout')}}" class="submitbtn border border-danger">Logout</a>
+								{%else%}
+								<a href="{{url_for('Auth.login')}}" class="submitbtn border border-danger">SignIn</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% block content %}
+
+	{% endblock content %}
+
+	<section class="ss_section_footer"> <!--===== Section Footer Start =====-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 pt-0">
+							<div class="ss_foot_sec">
+								<a href="index3.html"><img class="img-fluid"
+										src="https://stocksales.b-cdn.net/static%20content/assets2/images/salesStockLogo.png "
+										alt="logo" /></a>
+								<p>We are the only known company that supply an entire range of industries leading solar
+									brands with an uncompromising level of quality and services at the right place, at
+									the right time and at the right price.</p>
+								<ul class="social_share mt-3">
+									<li>
+										<a href="#">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 310">
+												<g id="XMLID_834_">
+													<path id="XMLID_835_" d="M81.703,165.106h33.981V305c0,2.762,2.238,5,5,5h57.616c2.762,0,5-2.238,5-5V165.765h39.064
+												c2.54,0,4.677-1.906,4.967-4.429l5.933-51.502c0.163-1.417-0.286-2.836-1.234-3.899c-0.949-1.064-2.307-1.673-3.732-1.673h-44.996
+												V71.978c0-9.732,5.24-14.667,15.576-14.667c1.473,0,29.42,0,29.42,0c2.762,0,5-2.239,5-5V5.037c0-2.762-2.238-5-5-5h-40.545
+												C187.467,0.023,186.832,0,185.896,0c-7.035,0-31.488,1.381-50.804,19.151c-21.402,19.692-18.427,43.27-17.716,47.358v37.752H81.703
+												c-2.762,0-5,2.238-5,5v50.844C76.703,162.867,78.941,165.106,81.703,165.106z" />
+												</g>
+											</svg>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+												<g>
+													<path
+														d="M256.064,0h-0.128C114.784,0,0,114.816,0,256c0,56,18.048,107.904,48.736,150.048l-31.904,95.104l98.4-31.456
+													C155.712,496.512,204,512,256.064,512C397.216,512,512,397.152,512,256S397.216,0,256.064,0z M405.024,361.504
+													c-6.176,17.44-30.688,31.904-50.24,36.128c-13.376,2.848-30.848,5.12-89.664-19.264C189.888,347.2,141.44,270.752,137.664,265.792
+													c-3.616-4.96-30.4-40.48-30.4-77.216s18.656-54.624,26.176-62.304c6.176-6.304,16.384-9.184,26.176-9.184
+													c3.168,0,6.016,0.16,8.576,0.288c7.52,0.32,11.296,0.768,16.256,12.64c6.176,14.88,21.216,51.616,23.008,55.392
+													c1.824,3.776,3.648,8.896,1.088,13.856c-2.4,5.12-4.512,7.392-8.288,11.744c-3.776,4.352-7.36,7.68-11.136,12.352
+													c-3.456,4.064-7.36,8.416-3.008,15.936c4.352,7.36,19.392,31.904,41.536,51.616c28.576,25.44,51.744,33.568,60.032,37.024
+													c6.176,2.56,13.536,1.952,18.048-2.848c5.728-6.176,12.8-16.416,20-26.496c5.12-7.232,11.584-8.128,18.368-5.568
+													c6.912,2.4,43.488,20.48,51.008,24.224c7.52,3.776,12.48,5.568,14.304,8.736C411.2,329.152,411.2,344.032,405.024,361.504z" />
+												</g>
+											</svg>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 310">
+												<g id="XMLID_822_">
+													<path id="XMLID_823_" d="M297.917,64.645c-11.19-13.302-31.85-18.728-71.306-18.728H83.386c-40.359,0-61.369,5.776-72.517,19.938
+												C0,79.663,0,100.008,0,128.166v53.669c0,54.551,12.896,82.248,83.386,82.248h143.226c34.216,0,53.176-4.788,65.442-16.527
+												C304.633,235.518,310,215.863,310,181.835v-53.669C310,98.471,309.159,78.006,297.917,64.645z M199.021,162.41l-65.038,33.991
+												c-1.454,0.76-3.044,1.137-4.632,1.137c-1.798,0-3.592-0.484-5.181-1.446c-2.992-1.813-4.819-5.056-4.819-8.554v-67.764
+												c0-3.492,1.822-6.732,4.808-8.546c2.987-1.814,6.702-1.938,9.801-0.328l65.038,33.772c3.309,1.718,5.387,5.134,5.392,8.861
+												C204.394,157.263,202.325,160.684,199.021,162.41z" />
+												</g>
+											</svg>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"
+												viewBox="0 0 24 24" id="instagram">
+												<path
+													d="M12,9.52A2.48,2.48,0,1,0,14.48,12,2.48,2.48,0,0,0,12,9.52Zm9.93-2.45a6.53,6.53,0,0,0-.42-2.26,4,4,0,0,0-2.32-2.32,6.53,6.53,0,0,0-2.26-.42C15.64,2,15.26,2,12,2s-3.64,0-4.93.07a6.53,6.53,0,0,0-2.26.42A4,4,0,0,0,2.49,4.81a6.53,6.53,0,0,0-.42,2.26C2,8.36,2,8.74,2,12s0,3.64.07,4.93a6.86,6.86,0,0,0,.42,2.27,3.94,3.94,0,0,0,.91,1.4,3.89,3.89,0,0,0,1.41.91,6.53,6.53,0,0,0,2.26.42C8.36,22,8.74,22,12,22s3.64,0,4.93-.07a6.53,6.53,0,0,0,2.26-.42,3.89,3.89,0,0,0,1.41-.91,3.94,3.94,0,0,0,.91-1.4,6.6,6.6,0,0,0,.42-2.27C22,15.64,22,15.26,22,12S22,8.36,21.93,7.07Zm-2.54,8A5.73,5.73,0,0,1,19,16.87,3.86,3.86,0,0,1,16.87,19a5.73,5.73,0,0,1-1.81.35c-.79,0-1,0-3.06,0s-2.27,0-3.06,0A5.73,5.73,0,0,1,7.13,19a3.51,3.51,0,0,1-1.31-.86A3.51,3.51,0,0,1,5,16.87a5.49,5.49,0,0,1-.34-1.81c0-.79,0-1,0-3.06s0-2.27,0-3.06A5.49,5.49,0,0,1,5,7.13a3.51,3.51,0,0,1,.86-1.31A3.59,3.59,0,0,1,7.13,5a5.73,5.73,0,0,1,1.81-.35h0c.79,0,1,0,3.06,0s2.27,0,3.06,0A5.73,5.73,0,0,1,16.87,5a3.51,3.51,0,0,1,1.31.86A3.51,3.51,0,0,1,19,7.13a5.73,5.73,0,0,1,.35,1.81c0,.79,0,1,0,3.06S19.42,14.27,19.39,15.06Zm-1.6-7.44a2.38,2.38,0,0,0-1.41-1.41A4,4,0,0,0,15,6c-.78,0-1,0-3,0s-2.22,0-3,0a4,4,0,0,0-1.38.26A2.38,2.38,0,0,0,6.21,7.62,4.27,4.27,0,0,0,6,9c0,.78,0,1,0,3s0,2.22,0,3a4.27,4.27,0,0,0,.26,1.38,2.38,2.38,0,0,0,1.41,1.41A4.27,4.27,0,0,0,9,18.05H9c.78,0,1,0,3,0s2.22,0,3,0a4,4,0,0,0,1.38-.26,2.38,2.38,0,0,0,1.41-1.41A4,4,0,0,0,18.05,15c0-.78,0-1,0-3s0-2.22,0-3A3.78,3.78,0,0,0,17.79,7.62ZM12,15.82A3.81,3.81,0,0,1,8.19,12h0A3.82,3.82,0,1,1,12,15.82Zm4-6.89a.9.9,0,0,1,0-1.79h0a.9.9,0,0,1,0,1.79Z">
+												</path>
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 pl-lg-5 pl-md-5">
+							<div class="ss_foot_sec">
+								<h2 class="ss_foot_head">Products</h2>
+								<ul>
+									{% for element in data_categories %}
+									<li><a href="{{url_for('subcategories',id=element['_id'])}}"> {{element['name']}}</a></li>
+									{% endfor %}
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="ss_foot_sec">
+								<h2 class="ss_foot_head">Useful Links</h2>
+								<ul>
+									<li><a href="/"> Suppliers</a></li>
+									<li><a href="{{url_for('about')}}"> About Us</a></li>
+									
+									<li><a href="{{url_for('contactus')}}"> Contact Us</a></li>
+									<li><a href="{{url_for('blogs')}}">Blogs</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="ss_foot_sec">
+								<h2 class="ss_foot_head">Contact Us</h2>
+								<ul>
+									<li>Address : 65, 1st floor, Greater Kailash Colony, Lal Kothi, Behind Apex Mall,
+										Jaipur, Rajasthan, INDIA, 302015</li>
+										<li>Email: <a href="mailto:info@stocksale.in">info@stocksale.in</a></li>
+										<li>Phone: <a href="tel:+919950845678">+91-99508-45678</a> <br> <span style="padding-left: 58px;"><a href="tel:+919875000011">+91-98750-00011</a></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> <!--===== Section Footer End =====-->
+	<div class="ss_copywrite">
+		<p>&copy Copyright 2024, All right reserved by <a href="/">Stock Sales</a></p>
+	</div>
+
+	<!--===== script start =====-->
+	<script src="https://stocksales.b-cdn.net/static%20content/assets/js/jquery.min.js"></script>
+	<script src="https://stocksales.b-cdn.net/static%20content/assets/js/bootstrap.min.js"></script>
+	<script src="https://stocksales.b-cdn.net/static%20content/assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="https://stocksales.b-cdn.net/static%20content/assets/js/isotope.pkgd.min.js"></script>
+	<script src="https://stocksales.b-cdn.net/static%20content/assets/js/swiper.min.js"></script>
+	<script src="https://stocksales.b-cdn.net/static%20content/assets/js/wow.min.js"></script>
+	<script src="https://stocksales.b-cdn.net/static%20content/assets/js/script.js"></script>
+	<script src="https://stocksales.b-cdn.net/static%20content/assets2/js/custom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+		function openVideoModal() {
+			var videoUrl = "https://www.youtube.com/embed/9ZdoPtDsrr0?si=aBAEko5BpN05Kwv0"; // Replace with your video URL
+			var videoPlayer = document.getElementById("videoPlayer");
+			videoPlayer.src = videoUrl;
+			var modal = new bootstrap.Modal(document.getElementById('videoModal'));
+			modal.show();
+		}
+	</script>
+</body>
+
+</html>

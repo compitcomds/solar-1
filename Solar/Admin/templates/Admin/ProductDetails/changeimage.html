@@ -1,0 +1,25 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+
+this is select images
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload with Flask-WTF</title>
+</head>
+<body>
+    <h1>Upload Image</h1>
+    <form method="post" enctype="multipart/form-data" >
+        {{ form.csrf_token }}
+        <label for="file">Select Image:</label>
+        {{ form.file }}
+        <br>
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
+
+
+{% endblock content %}

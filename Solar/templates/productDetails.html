@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+{% with messages = get_flashed_messages(category_filter=["sm"]) %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+    </div>
+<section class="ss_product_single spacer_top spacer_bottom p-2 mt-4"> <!--===== Section Product Single Start =====-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="ss_product_img">
+                    <div id="thumbs_img">
+                        <ul>
+                            <li>
+                                <img class="img-fluid ss_active_bdr" src="{{'https://'+ data['photos1'] }}"
+                                    alt="image" />
+                            </li>
+                            <li>
+                                <img class="img-fluid" src="{{'https://'+ data['photos2'] }}" alt="image" />
+                            </li>
+                            <li>
+                                <img class="img-fluid" src="{{'https://'+ data['photos3'] }}" alt="image" />
+                            </li>
+                            <li>
+                                <img class="img-fluid" src="{{'https://'+ data['photos4'] }}" alt="image" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product_zoom">
+                        <img id="large_image" class="img-fluid" src="{{'https://'+ data['photos1'] }}" alt="image" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ss_product_cont wow fadeIn" data-wow-delay="0.1s" data-wow-duration="1s">
+                    <h1>{{data['name']}}</h1>
+                    <h2>₹{{data['price']}}.00</h2>
+                    <div class="ss_specifi">
+                        <h2>Specification</h2>
+                            <p><span>Brand Name</span> <span>{{data['brand']}}</span></p>
+                            <p><span>Product Id</span> <span>{{data['productid']}}</span></p>
+                            <p><span>Minimum Order Unit</span> <span>{{data['minimumOrderUnit']}}</span></p>
+                            <p><span>Height (in)</span> <span>{{data['height']}}</span></p>
+                            <p><span>Width (in)</span> <span>{{data['width']}}</span></p>
+                            <p><span>Weight (kg)</span> <span>{{data['weight']}}</span></p>
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <!-- Button to trigger modal -->
+                        <button type="button" class="ss_btn" data-toggle="modal" data-target="#yourCartModal">
+                            Get Quote
+                        </button>
+
+                        <!-- Compare Link -->
+                        <div class="row" style="padding-left: 30px;">
+                            <a href="{{url_for('compare',id=data['_id'])}}" class="ss_btn">Compare →</a>
+                        </div>
+
+                        <!-- Compare Link -->
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="yourCartModal" tabindex="-1" role="dialog"
+                            aria-labelledby="yourCartModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="yourCartModalLabel">Stock Sales</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST">
+                                            {{ form.hidden_tag() }}
+
+                                            <div class="form-group">
+                                                <label for="name">Name:</label>
+                                                {{form.name(class="form-control", id="name",
+                                                placeholder="Enter your name")}}
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                {{form.email(class="form-control" ,id="email",
+                                                placeholder="Enter your email")}}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.number.label(for="phone") }}
+                                                            {{ form.number(class="form-control", id="phone", type="number") }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="quantity">Net Quantity:</label>
+                                        
+                                                    {{form.netQty(class="form-control", id="quantity",
+                                                    placeholder="Enter net quantity")}}
+                                            </div>
+                                            {{form.submit(class="ss_btn ",
+                                            style="justify-content: center;")}}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ss_product_disc spacer_top">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                <li class="nav-item">
+                    <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                        aria-controls="review" aria-selected="false">More Specification</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " id="discription-tab" data-toggle="tab" href="#discription" role="tab"
+                        aria-controls="discription" aria-selected="true">Discription</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+
+                    <div class="ss_specifi">
+                        <h2>Specification</h1>
+                            {% for item in data['compare_parameter'] %}
+                            <p><span>{{item}}</span> <span>                            {{data['compare_parameter'][item]}}
+                            </span></p>
+                            {% endfor %}
+                    </div>
+
+                </div>
+                <div class="tab-pane fade " id="discription" role="tabpanel" aria-labelledby="discription-tab">
+                    <h2>Discription</h2>
+                    <p>{{data['discription']}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

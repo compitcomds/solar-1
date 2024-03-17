@@ -1,0 +1,34 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+<table>
+        <thead>
+          <tr>
+
+            <th>Name</th>
+            <th>Email</th>
+            <th>Number</th>
+            <th>Product</th>            
+
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% set grouped_data = data|groupby('date') %}
+            {% for date, elements in grouped_data %}
+                <tr><td colspan="6">{{ date }}</td></tr>
+                {% for element in elements %}
+                <tr>
+
+                    <td>{{ element.name }}</td>
+                    <td>{{ element.email }}</td>            
+                    <td>{{ element.number }}</td>            
+                    <td>{{ element.product_name }}</td>            
+
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+      </table>
+      
+
+{% endblock content %}

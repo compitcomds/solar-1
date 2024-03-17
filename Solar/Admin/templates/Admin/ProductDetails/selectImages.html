@@ -1,0 +1,22 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+
+this is select images
+{{data}}
+<hr>
+{% set my_variable = 'https://'+data['photos1'] %}
+<img src="{{my_variable}}" style="height: 200px; width: 200px;">
+<a href="{{url_for('Admin.changeimage',product_id_mongo=data['_id'],image_name='photos1',product_id=data['product_id'])}}">Change</a>
+<hr>
+{% set my_variable = 'https://'+data['photos2'] %}
+<img src="{{my_variable}}" style="height: 200px; width: 200px;">
+<a href="{{url_for('Admin.changeimage',product_id_mongo=data['_id'],image_name='photos2',product_id=data['product_id'])}}">Change</a>
+<hr>
+{% set my_variable = 'https://'+data['photos3'] %}
+<img src="{{my_variable}}" style="height: 200px; width: 200px;">
+<a href="{{url_for('Admin.changeimage',product_id_mongo=data['_id'],image_name='photos3',product_id=data['product_id'])}}">Change</a>
+<hr>
+{% set my_variable = 'https://'+data['photos4'] %}
+<img src="{{my_variable}}" style="height: 200px; width: 200px;">
+<a href="{{url_for('Admin.changeimage',product_id_mongo=data['_id'],image_name='photos4',product_id=data['product_id'])}}">Change</a>
+{% endblock content %}

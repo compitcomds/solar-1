@@ -1,0 +1,88 @@
+<!-- upload.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks Sales Admin</title>
+    <link rel="stylesheet" href="{{url_for('Admin.static', filename='admin.css')}}">
+    <link rel="shortcut icon" type="image/png"
+    href="https://stocksales.b-cdn.net/static%20content/assets2/images/salesStockLogoSingle1.png ">
+</head>
+
+<body>
+    <div class="admin-nav">
+        <h1>Hello Admin !</h1>
+
+        <div class="admin-nav-buttons">
+
+
+            <button class="admin-button" onclick="window.location.href='{{url_for('Admin.Admin_index')}}'">
+                Admin home
+            </button>
+            
+            <button class="admin-button" onclick="window.location.href='{{url_for('Admin.ShowMainCategory')}}'">
+                Show Main Categories
+            </button>
+            
+            <button class="admin-button" onclick="window.location.href='{{url_for('Blog.ShowBlog')}}'">
+                Blog
+            </button>
+            
+            <button class="admin-button" onclick="window.location.href='{{url_for('SmallBanner.showsmallBanner')}}'">
+                Small Banner
+            </button>
+            
+            <button class="admin-button" onclick="window.location.href='{{url_for('Banner.showBanner')}}'">
+                Banner
+            </button>
+            
+            <button class="admin-button" onclick="window.location.href='{{url_for('Admin.showquery')}}'">
+                See Queries
+            </button>
+            <button class="admin-button" onclick="window.location.href='{{url_for('Admin.showProductQuery')}}'">
+                            See Product Queries
+                        </button>
+            <button class="admin-button" onclick="window.location.href='{{url_for('Admin.showcontactQuery')}}'">
+                show contact Query
+            </button>
+            <button class="admin-button" onclick="window.location.href='{{url_for('Auth.logout')}}'">
+                Logout
+            </button>
+            
+        </div>
+    </div>
+    <hr>
+
+
+    {% block content %}
+
+    {% endblock content %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
+        integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        const buttons = document.querySelectorAll('.admin-button');
+
+        // Add click event listener to each button
+        buttons.forEach(button => {
+            button.addEventListener('click', function (event) {
+
+
+                // Remove active class from all buttons
+                buttons.forEach(btn => {
+                    btn.classList.remove('button-active');
+                });
+
+                // Add active class to the clicked button
+                this.classList.add('button-active');
+            });
+        });
+
+    </script>
+</body>
+
+</html>

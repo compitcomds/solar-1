@@ -1,0 +1,43 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+
+<button class="common-button" onclick="window.location.href='{{ url_for('Admin.add_product', sub_id=sub_id, main_id=main_id) }}'">
+        Add product
+    </button>
+    
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Subcategory</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for element in data %}
+          <tr>
+            <td>{{ element['_id'] }}</td>
+            <td>{{ element.name }}</td>
+            <td>{{ element.SubCategory }}</td>
+            <td>
+                <button class="common-button" onclick="window.location.href='{{ url_for('Admin.ViewProductDetails', Product_id=element['_id'], Sub_id=sub_id, Main_id=main_id) }}'">
+                        View
+                    </button>
+                    
+                    <button class="common-button" onclick="window.location.href='{{ url_for('Admin.selectimage', product_id=element['_id']) }}'">
+                        Change Image
+                    </button>
+                    
+                    <button class="common-button" onclick="window.location.href='{{ url_for('Admin.delete_product', main_id=sub_id, sub_id=main_id, product_id=element['_id']) }}'">
+                        Delete
+                    </button>
+                    
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+
+{% endblock content %}

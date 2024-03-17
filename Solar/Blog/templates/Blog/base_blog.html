@@ -1,0 +1,10 @@
+{% extends 'Admin_base.html' %}
+{% block content %}
+<button class="common-button" onclick="window.location.href='{{url_for('Blog.AddBlog')}}'">
+    Add blog
+</button>
+
+    {% block blogContent %}
+        
+    {% endblock blogContent %}
+{% endblock %}

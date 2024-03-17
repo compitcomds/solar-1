@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="abcd ss_product ss_section_six ss_shop pb-1">
+	<div class="container-fluid ml-0 pl-4 pr-4">
+		<div class="row">
+			<div class="col-xl-2 col-lg-3 col-md-3 d-none d-sm-block p-0 m-0 " style="height: 800px; overflow-y: auto;">
+				<!-- ======= Sidebar ======= -->
+				<aside id="sidebar" class="sidebar">
+
+					<ul class="sidebar-nav" id="sidebar-nav">
+						{% for element in data_sideNav %}
+						<li class="nav-item">
+
+							<a href="{{url_for('subcategories',id=element['_id'])}}">
+								<span>{{element.name}}</span>
+							</a>
+
+							</a>
+							<ul id="{{element.name}}" class="nav-content" data-bs-parent="#sidebar-nav">
+								{% for sub_id in element.SubCategory %}
+								{% if sub_id in qwe %}
+								<li>
+									<a href="{{url_for('product_list',main_id=element['_id'],sub_id=sub_id)}}">
+										<span>
+											{{ qwe[sub_id] }}
+											<br>
+										</span>
+									</a>
+								</li>
+								{% endif %}
+								{% endfor %}
+
+							</ul>
+						</li><!-- End Components Nav -->
+						{%endfor%}
+
+
+					</ul>
+
+				</aside><!-- End Sidebar-->
+			</div>
+			<div class="naman col-xl-10 col-lg-9 col-md-9 col-12 p-4" style="height: 800px; overflow-y: auto;">
+				<div class="row">
+
+					{% for element in data %}
+
+					<div class="col-lg-4 col-md-12 col-sm-6">
+						<div class="ss_six_product wow fadeIn" data-wow-delay="0.1s" data-wow-duration="1s">
+							<div class="ss_six_p_img ss_box_bg">
+								<img class="img-fluid" src="{{'https://'+ element['photos1'] }}" alt="image" />
+							</div>
+							<div class="ss_product_content ss_box_bg">
+								<a href="{{url_for('productdetails',prod_id=element['_id'])}}">
+									<h2 style="font-size:x-large;">
+										<b>{{element['name']}}</b>
+									</h2>
+									<b>
+										<p class="pt-2">₹{{element['price']}}</p>
+									</b>
+
+								</a>
+							</div>
+						</div>
+					</div>
+					{%endfor%}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{%endblock%}

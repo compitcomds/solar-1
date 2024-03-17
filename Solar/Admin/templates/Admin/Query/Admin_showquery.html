@@ -1,0 +1,37 @@
+{% extends "Admin_base.html" %}
+{% block content %}
+
+
+<table>
+        <thead>
+          <tr>
+
+            <th>Name</th>
+            <th>Email</th>
+            <th>Monthly Electricity Bill</th>
+            <th>Pin Code</th>
+            <th>Company Name</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% set grouped_data = data|groupby('date') %}
+          {% for date, elements in grouped_data|reverse %}
+              <tr><td colspan="7">{{ date }}</td></tr>
+              {% for element in elements|reverse %}
+              <tr>
+
+                  <td>{{ element.name }}</td>
+                  <td>{{ element.email }}</td>
+                  <td>{{ element['Avg Monthly Electricity Bill (Rs)'] }}</td>
+                  <td>{{ element['pin code'] }}</td>
+                  <td>{{ element['companyName'] }}</td>
+
+              </tr>
+              {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+      
+
+{% endblock content %}
