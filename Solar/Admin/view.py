@@ -39,7 +39,7 @@ def add_main_category():
               'SubCategory':[]}
         db.MainCategory.insert_one(data)
         return redirect(url_for("Admin.ShowMainCategory"))
-    return render_template( "Main/Admin_AddMainCategory.html" ,form = form )
+    return render_template( "Main/Admin_addMainCategory.html" ,form = form )
 
 @Admin.route("/deleteMainCategory/<string:id>", methods = ['GET','POST'])
 def delete_main_category(id):
