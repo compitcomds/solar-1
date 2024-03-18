@@ -78,7 +78,7 @@ def add_sub_category(subcat):
                     {'$push': {'SubCategory': ObjectId(insert_result['_id'])}}
                                 )
         return redirect(url_for('Admin.ShowSubCategory', subcat=subcat))
-    return render_template('sub/Admin_addSubCategory.html',form=form)
+    return render_template('Sub/Admin_addSubCategory.html',form=form)
 
 @Admin.route("/ShowSubCategory/<string:subcat>/addSubCategory/<string:id>",methods=['GET'])
 def delete_sub_category(id,subcat):
@@ -104,7 +104,7 @@ def ShowProduct(main_id,sub_id):
     # so i use main_id
     data=db.SubCategory.find_one({"_id":ObjectId(main_id)})
     x=list(db.Product.find({'_id':{ "$in" : data["Product"] }}))
-    return render_template('Product/Admin_showProduct.html',data=x,sub_id=sub_id,main_id=main_id)
+    return render_template('Product/Admin_ShowProduct.html',data=x,sub_id=sub_id,main_id=main_id)
 from flask import request
 from werkzeug.utils import secure_filename
 el=[]
@@ -185,7 +185,7 @@ def add_product(sub_id, main_id):
             {'_id': ObjectId(main_id)},
             {'$push': {'Product': productAdd.inserted_id}})
         return redirect(url_for('Admin.ShowProduct', sub_id=sub_id, main_id=main_id))
-    return render_template('Product/Admin_addProduct.html', form=form)
+    return render_template('Product/Admin_addproduct.html', form=form)
    
 @Admin.route("/deleteproduct/<string:main_id>/<string:sub_id>/<string:product_id>",methods=['GET'])
 def delete_product(main_id,sub_id,product_id):
