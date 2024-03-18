@@ -60,3 +60,9 @@ const app = Vue.createApp({
 });
 
 app.mount('#app');
+// Check if screen width is less than 1270px
+if (window.innerWidth < 1270) {
+    // Show desktop-only div
+    document.getElementById('desktop-only').style.display = 'block';
+  }
+  

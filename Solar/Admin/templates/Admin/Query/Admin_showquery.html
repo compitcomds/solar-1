@@ -32,6 +32,9 @@
           {% endfor %}
         </tbody>
       </table>
-      
+      <button class="admin-button right-bottom" onclick="window.location.href='{{url_for('Admin.showquerydownload_csv')}}'">
+        Download
+    </button>
+    
 
 {% endblock content %}

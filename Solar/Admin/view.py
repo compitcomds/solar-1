@@ -1,4 +1,4 @@
-from flask import Blueprint,request, render_template,redirect,url_for,jsonify,abort,flash
+from flask import Blueprint,request, render_template,redirect,url_for,jsonify,abort,flash,Response
 from flask_login import login_required,current_user
 from Solar.Admin.form import UplaodMainCategoriesForm,UplaodSubCategoriesForm,UplaodproductForm,UploadCompareForm,DynamicFormProduct,UploadForm
 import os
@@ -10,6 +10,8 @@ import threading
 import time
 import uuid
 import random
+import csv
+from io import StringIO
 
 Admin=Blueprint('Admin',__name__,template_folder='templates/Admin',static_folder='static')
 
@@ -299,4 +301,69 @@ def showProductQuery():
 def showcontactQuery():
     return render_template('Query/Admin_showcontact.html',data=list(db.contact.find()))
     
-    
+@Admin.route('/showquerydownload_csv')
+def showquerydownload_csv():
+    # Retrieve data from MongoDB
+    cursor = db.solarEnq.find({})
+    try:
+    # Prepare CSV data
+        csv_data = StringIO()
+        csv_writer = csv.DictWriter(csv_data, fieldnames=cursor[0].keys())
+        csv_writer.writeheader()
+        for document in cursor:
+            csv_writer.writerow(document)
+        
+        # Return CSV file as response
+        response = Response(
+            csv_data.getvalue(),
+            mimetype='text/csv',
+            headers={'Content-Disposition': 'attachment;filename=data.csv'}
+        )
+        return response
+    except:
+        return redirect(url_for('Admin.showProductQuery'))
+
+@Admin.route('/showProductQuerydownload_csv')
+def showProductQueryDownload_csv():
+    # Retrieve data from MongoDB
+    cursor = db.productQuery.find({})
+    try:
+    # Prepare CSV data
+        csv_data = StringIO()
+        csv_writer = csv.DictWriter(csv_data, fieldnames=cursor[0].keys())
+        csv_writer.writeheader()
+        for document in cursor:
+            csv_writer.writerow(document)
+        
+        # Return CSV file as response
+        response = Response(
+            csv_data.getvalue(),
+            mimetype='text/csv',
+            headers={'Content-Disposition': 'attachment;filename=data.csv'}
+        )
+        return response
+    except:
+        return redirect(url_for('Admin.showProductQuery'))
+
+
+@Admin.route('/showcontactQuerydownload_csv')
+def showcontactQueryDownload_csv():
+    # Retrieve data from MongoDB
+    cursor = db.contact.find({})
+    try:
+    # Prepare CSV data
+        csv_data = StringIO()
+        csv_writer = csv.DictWriter(csv_data, fieldnames=cursor[0].keys())
+        csv_writer.writeheader()
+        for document in cursor:
+            csv_writer.writerow(document)
+        
+        # Return CSV file as response
+        response = Response(
+            csv_data.getvalue(),
+            mimetype='text/csv',
+            headers={'Content-Disposition': 'attachment;filename=data.csv'}
+        )
+        return response
+    except:
+        return redirect(url_for('Admin.showcontactQuery'))

@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <div id="desktop-only">
+        <div class="overlay"></div>
+        <div class="content">
+          <p>Only available on desktop, we updating soon.</p>
+        </div>
+      </div>
+<div class="backblur">   
     <div class="admin-nav">
         <h1>Hello Admin !</h1>
 
@@ -56,11 +63,13 @@
         </div>
     </div>
     <hr>
-
-
+    
+    
+    
     {% block content %}
-
+    
     {% endblock content %}
+</div>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
         integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
